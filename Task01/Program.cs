@@ -26,7 +26,7 @@ using System.Threading.Tasks;
                 Console.WriteLine("SomeException");
             }
  * В случае возникновения иных нештатных ситуаций (например, в случае попытки итерирования по пустой коллекции) 
- * выбрасывайте ArgumentException!
+ * выбрасывайте InvalidOperationException!
  * 
  */
 
@@ -75,7 +75,7 @@ namespace Task01
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
             }
-            catch (ArgumentException e)
+            catch (InvalidOperationException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -87,7 +87,7 @@ namespace Task01
         {
             if (collection.Count() == 0)
             {
-                throw new ArgumentException("ArgumentException");
+                throw new InvalidOperationException("InvalidOperationException");
             }
             Console.WriteLine(collection
                 .Select(el => el.ToString())

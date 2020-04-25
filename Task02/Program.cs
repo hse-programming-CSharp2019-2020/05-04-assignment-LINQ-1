@@ -25,7 +25,7 @@ using System.Linq;
                 Console.WriteLine("SomeException");
             }
  * В случае возникновения иных нештатных ситуаций (например, в случае попытки итерирования по пустой коллекции) 
- * выбрасывайте ArgumentException!
+ * выбрасывайте InvalidOperationException!
  */
 namespace Task02
 {
@@ -87,6 +87,10 @@ namespace Task02
             catch (OverflowException e)
             {
                 Console.WriteLine("OverflowException");
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("InvalidOperationException");
             }
         }
         
