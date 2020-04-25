@@ -1,9 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/*Все действия по обработке данных выполнять с использованием LINQ
+ * 
+ * Объявите перечисление Manufacturer, состоящее из элементов
+ * Dell (код производителя - 0), Asus (1), Apple (2), Microsoft (3).
+ * 
+ * Обратите внимание на класс ComputerInfo, он содержит поле типа Manufacturer
+ * 
+ * На вход подается число N.
+ * На следующих N строках через пробел записана информация о компьютере: 
+ * фамилия владельца, код производителя (от 0 до 3) и год выпуска (в диапазоне 1970-2020).
+ * Затем с помощью средств LINQ двумя разными способами (как запрос или через методы)
+ * отсортируйте коллекцию следующим образом:
+ * 1. Первоочередно объекты ComputerInfo сортируются по фамилии владельца в убывающем порядке
+ * 2. Для объектов, у которых фамилии владельцев сопадают, 
+ * сортировка идет по названию компании производителя (НЕ по коду) в возрастающем порядке.
+ * 3. Если совпадают и фамилия, и имя производителя, то сортировать по году выпуска в порядке возрастания.
+ * 
+ * Выведите элементы каждой коллекции на экран в формате:
+ * <Фамилия_владельца>: <Имя_производителя> [<Год_производства>]
+ * 
+ * Пример ввода:
+ * 3
+ * Ivanov 1970 0
+ * Ivanov 1971 0
+ * Ivanov 1970 1
+ * 
+ * Пример вывода:
+ * Ivanov: Asus 1970
+ * Ivanov: Dell 1971
+ * Ivanov: Dell 1970
+ * 
+ * Ivanov: Asus 1970
+ * Ivanov: Dell 1971
+ * Ivanov: Dell 1970
+ * 
+ * 
+ *  * Обрабатывайте возможные исключения путем вывода на экран типа этого исключения 
+ * (не использовать GetType(), пишите тип руками).
+ * Например, 
+ *          catch (SomeException)
+            {
+                Console.WriteLine("SomeException");
+            }
+ * В случае возникновения иных нештатных ситуаций (например, в случае попытки итерирования по пустой коллекции) 
+ * выбрасывайте InvalidOperationException!
+ */
 namespace Task03
 {
     class Program
@@ -23,23 +67,26 @@ namespace Task03
                 });
             }
             
+            // выполните сортировку одним выражением
             var computerInfoQuery = from x in computerInfoList
                         orderby x.Owner descending, 
-                                x.ComputerManufacturer descending, 
+                                x.ComputerManufacturer.ToString() ascending, 
                                 x.ProductionYear descending
                         select x;
             PrintCollectionInOneLine(computerInfoQuery);
 
             Console.WriteLine();
 
+            // выполните сортировку одним выражением
             var computerInfoMethods = computerInfoList.OrderByDescending(x => x.Owner)
-                .ThenByDescending(x => x.ComputerManufacturer)
+                .ThenBy(x => x.ComputerManufacturer.ToString())
                 .ThenByDescending(x => x.ProductionYear);
             PrintCollectionInOneLine(computerInfoMethods);
 
             Console.Read();
         }
 
+        // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
         public static void PrintCollectionInOneLine(IEnumerable<ComputerInfo> collection)
         {
             collection.ToList().ForEach(computerInfo => Console.WriteLine(computerInfo));
@@ -48,15 +95,15 @@ namespace Task03
 
     enum Manufacturer
     {
-        Apple,
-        Asus,
         Dell,
+        Asus,
+        Apple,
         Microsoft 
     }
 
     class ComputerInfo
     {
-        public String Owner { get; set; }
+        public string Owner { get; set; }
         public Manufacturer ComputerManufacturer { get; set; }
         public int ProductionYear { get; set; }
 
