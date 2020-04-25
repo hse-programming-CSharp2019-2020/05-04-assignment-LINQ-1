@@ -81,7 +81,7 @@ namespace Task01
         }
 
         // Попробуйте осуществить вывод элементов коллекции с учетом разделителя, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-        // P.S. Есть два способа, оставьте тот, в котором применяется LINQ.
+        // P.S. Есть два способа, оставьте тот, в котором применяется LINQ
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
             if (collection.Count() == 0)
