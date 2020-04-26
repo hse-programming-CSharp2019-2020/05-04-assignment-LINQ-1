@@ -29,13 +29,13 @@ using System.Linq;
  * Ivanov 1970 1
  * 
  * Пример вывода:
- * Ivanov: Asus 1970
- * Ivanov: Dell 1971
- * Ivanov: Dell 1970
+ * Ivanov: Asus [1970]
+ * Ivanov: Dell [1971]
+ * Ivanov: Dell [1970]
  * 
- * Ivanov: Asus 1970
- * Ivanov: Dell 1971
- * Ivanov: Dell 1970
+ * Ivanov: Asus [1970]
+ * Ivanov: Dell [1971]
+ * Ivanov: Dell [1970]
  * 
  * 
  *  * Обрабатывайте возможные исключения путем вывода на экран типа этого исключения 
@@ -45,8 +45,8 @@ using System.Linq;
             {
                 Console.WriteLine("SomeException");
             }
- * В случае возникновения иных нештатных ситуаций (например, в случае попытки итерирования по пустой коллекции) 
- * выбрасывайте InvalidOperationException!
+ * При некорректных входных данных (не связанных с созданием объекта) выбрасывайте FormatException
+ * При невозможности создать объект класса ComputerInfo выбрасывайте ArgumentException!
  */
 namespace Task03
 {
@@ -83,7 +83,7 @@ namespace Task03
             {
                 Console.WriteLine("ArgumentException");
             }
-            
+
             // выполните сортировку одним выражением
             var computerInfoQuery = from x in computerInfoList
                         orderby x.Owner descending, 
