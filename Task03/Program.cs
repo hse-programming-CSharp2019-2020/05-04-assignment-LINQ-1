@@ -54,93 +54,44 @@ namespace Task03
     {
         static void Main(string[] args)
         {
-            int N = 0;
+            int N
             List<ComputerInfo> computerInfoList = new List<ComputerInfo>();
             try
             {
-                N = int.Parse(Console.ReadLine());
+                N = 
                 
                 for (int i = 0; i < N; i++)
                 {
-                    string[] s = Console.ReadLine().Trim().Split();
-                    computerInfoList.Add(new ComputerInfo
-                    {
-                        Owner = s[0],
-                        ProductionYear = int.Parse(s[1]),
-                        ComputerManufacturer = (Manufacturer)int.Parse(s[2])
-                    });
+                    
                 }
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("FormatException");
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("OverflowException");
-            }
-            catch (ArgumentException)
-            {
-                Console.WriteLine("ArgumentException");
-            }
+           
 
             // выполните сортировку одним выражением
-            var computerInfoQuery = from x in computerInfoList
-                        orderby x.Owner descending, 
-                                x.ComputerManufacturer.ToString() ascending, 
-                                x.ProductionYear descending
-                        select x;
+            var computerInfoQuery = from 
+
             PrintCollectionInOneLine(computerInfoQuery);
 
             Console.WriteLine();
 
             // выполните сортировку одним выражением
-            var computerInfoMethods = computerInfoList.OrderByDescending(x => x.Owner)
-                .ThenBy(x => x.ComputerManufacturer.ToString())
-                .ThenByDescending(x => x.ProductionYear);
-            PrintCollectionInOneLine(computerInfoMethods);
+            var computerInfoMethods = computerInfoList.
 
-            Console.Read();
+            PrintCollectionInOneLine(computerInfoMethods);
+            
         }
 
         // выведите элементы коллекции на экран с помощью кода, состоящего из одной линии (должна быть одна точка с запятой)
         public static void PrintCollectionInOneLine(IEnumerable<ComputerInfo> collection)
         {
-            collection.ToList().ForEach(computerInfo => Console.WriteLine(computerInfo));
         }
     }
 
-    enum Manufacturer
-    {
-        Dell,
-        Asus,
-        Apple,
-        Microsoft 
-    }
 
     class ComputerInfo
     {
         public string Owner { get; set; }
         public Manufacturer ComputerManufacturer { get; set; }
-
-        private int productionYear;
-        public int ProductionYear {
-            get {
-                return productionYear;
-            }
-            set {
-                if (value < 1970 || value > 2020)
-                {
-                    throw new ArgumentException();
-                }
-                productionYear = value;
-            }
         
-        }
-
-        public override string ToString()
-        {
-            return $"{Owner}: {ComputerManufacturer} [{ProductionYear}]";
-        }
     }
 }

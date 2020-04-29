@@ -37,7 +37,6 @@ namespace Task01
         static void Main(string[] args)
         {
             RunTesk01();
-            Console.Read();
         }
 
         public static void RunTesk01()
@@ -46,38 +45,19 @@ namespace Task01
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = Console.ReadLine()
-                    .Trim()
-                    .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => int.Parse(s))
-                    .ToArray();
+                arr = 
             }
-            catch (OverflowException e)
-            {
-                Console.WriteLine("OverflowException");
-                return;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("FormatException");
-                return;
-            }
+            
             // использовать синтаксис запросов!
-            IEnumerable<int> arrQuery = from n in arr
-                                        where n % 2 == 0 || n < 0
-                                        select n;
+            IEnumerable<int> arrQuery = from 
 
             // использовать синтаксис методов!
-            IEnumerable<int> arrMethod = arr.Where(x => x % 2 == 0 || x < 0);
+            IEnumerable<int> arrMethod = arr.
 
             try
             {
                 PrintEnumerableCollection<int>(arrQuery, ":");
                 PrintEnumerableCollection<int>(arrMethod, "*");
-            }
-            catch (InvalidOperationException e)
-            {
-                Console.WriteLine(e.Message);
             }
         }
 
@@ -85,13 +65,8 @@ namespace Task01
         // P.S. Есть два способа, оставьте тот, в котором применяется LINQ...
         public static void PrintEnumerableCollection<T>(IEnumerable<T> collection, string separator)
         {
-            if (collection.Count() == 0)
-            {
-                throw new InvalidOperationException("InvalidOperationException");
-            }
-            Console.WriteLine(collection
-                .Select(el => el.ToString())
-                .Aggregate((a, b) => a.ToString() + separator + b.ToString()));
+           
+           
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 /*
  * На вход подается строка, состоящая из целых чисел типа int, разделенных одним или несколькими пробелами.
@@ -37,7 +35,6 @@ namespace Task04
         static void Main(string[] args)
         {
             RunTesk04();
-            Console.Read();
         }
 
         public static void RunTesk04()
@@ -46,79 +43,26 @@ namespace Task04
             try
             {
                 // Попробуйте осуществить считывание целочисленного массива, записав это ОДНИМ ВЫРАЖЕНИЕМ.
-                arr = Console.ReadLine()
-                    .Trim()
-                    .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => int.Parse(s))
-                    .ToArray();
+                arr = 
             }
-            catch (OverflowException e)
-            {
-                Console.WriteLine("OverflowException");
-                return;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("FormatException");
-                return;
-            }
-
-            try
-            {
+           
                 // использовать синтаксис методов! SQL-подобные запросы не писать!
-                bool isPlus = false;
-                int arrAggregate = arr.Aggregate(5, (a, b) =>
-                {
-                    checked
-                    {
-                        isPlus = !isPlus;
-                        if (isPlus)
-                        {
-                            return a + b;
-                        }
-                        else
-                        {
-                            return a - b;
-                        }
-                    }
-                });
+               
+                int arrAggregate = arr.
 
                 int arrMyAggregate = MyClass.MyAggregate(arr);
 
                 Console.WriteLine(arrAggregate);
                 Console.WriteLine(arrMyAggregate);
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine("OverflowException");
-            }
+           
         }
     }
 
     static class MyClass
     {
-        public static int MyAggregate(this IEnumerable<int> seq)
+        public static int MyAggregate()
         {
-            int initialValue = 5;
-            int result = initialValue;
-            bool isPlus = true;
-            checked
-            {
-                foreach (var item in seq)
-                {
-                    if (isPlus)
-                    {
-                        result += item;
-                    }
-                    else
-                    {
-                        result -= item;
-                    }
-                    isPlus = !isPlus;
-                }
-            }
-
-            return result;
+            
         }
     }
 }
